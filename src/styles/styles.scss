@@ -1,0 +1,10 @@
+@import './helpers/variables';
+@import './normalize.scss';
+@import './helpers/fonts.scss';
+@import './helpers/placeholders.scss';
+
+@import './base.scss';
+
+// Components
+@import './components/main_CommonView.scss';
+// Дописывать по отдельным компонентам сюда
