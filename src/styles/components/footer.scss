@@ -1,0 +1,50 @@
+footer {
+  background-color: #f7f7f7;
+}
+
+.section__footer {
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 34px;
+  height: 106px;
+}
+
+.footer__text {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  font-family: $main-text-font;
+  text-align: center;
+  line-height: 24px;
+}
+
+.footer__text--part {
+  display: block;
+}
+
+.footer__text--team {
+  color: #000000;
+}
+
+@media (min-width: 768px) {
+  .footer__text--part {
+    display: inline;
+  }
+
+  .section__footer {
+    height: 77px;
+    width: 387px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__text--part {
+    display: inline;
+  }
+
+  .section__footer {
+    height: 77px;
+    padding-bottom: 30px;
+
+  }
+}

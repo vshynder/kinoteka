@@ -6,7 +6,10 @@
 @import './base.scss';
 
 // Components
+
 @import './components/mainViewerCommon.scss';
 @import './components/pageSlider.scss';
+@import './components/footer.scss';
+
 // Дописывать по отдельным компонентам сюда
 @import './components/details.scss'
