@@ -1,0 +1,16 @@
+<ul class="main__list">
+    {{#each this}}
+    <li class="main__item">
+        <a class="main__item-link" href="#">
+            <img class="main__item-img" src="{{poster_path}}" alt="{{title}}" />
+            <p class="main__item-title">{{title}}</p>
+            <ul class="main__item-about-list">
+                <li class="main__about-item">{{genre}}</li>
+                <li class="main__about-item">|</li>
+                <li class="main__about-item">{{release_year}}</li>
+                <li class="main__about-item main__about-vote">{{vote_average}}</li>
+            </ul>
+        </a>
+    </li>
+    {{/each}}
+</ul>
