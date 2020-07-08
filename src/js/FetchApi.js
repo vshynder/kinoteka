@@ -4,14 +4,10 @@ export default class FetchAPI {
     this.noMatchMessage =
       "Search result not successful. Enter the correct movie name and try again";
   }
-  async getPopular(amountOfPages = 1) {
-    const outArr = [];
-    for (let i = 1; i <= amountOfPages; i++) {
-      const popularAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=${i}`;
-      const data = await fetch(popularAPI).then((j) => j.json());
-      outArr.push(...data.results);
-    }
-    return outArr;
+  async getPopular(page = 1) {
+    const popularAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=${page}`;
+    const data = await fetch(popularAPI).then((j) => j.json());
+    return data.results;
   }
 
   async getByName(name) {

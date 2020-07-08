@@ -4,9 +4,10 @@ import FetchApi from "./js/fetchApi.js";
 import data from "./js/data";
 //подключает страничку одного фильма
 import buildDetails from "./js/details";
+import { template } from "handlebars";
 const search = new FetchApi();
-search.getPopular(10).then((popularMovies) => console.log(popularMovies));
-//
+search.getPopular().then((popularMovies) => console.log(popularMovies));
+
 const searchMovie = search.getByName("nemo"); // <<<------сюда запихнуть переменную с строкой с инпута вместо "nemo"
 searchMovie.then((m) => console.log(m));
 
