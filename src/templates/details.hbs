@@ -1,0 +1,39 @@
+    <section class="details" id="details">
+      
+      <div class="details__box">
+        <img class="details__image" src={{poster_path}} alt={{title}} >
+      </div>
+      <!-- Блок информации о фильме -->
+      <div class="details__main">
+          <!-- title -->
+          <h2 class="details__title">{{title}}</h2>
+          <!-- Статистика -->
+          <div class="stats">
+            <!-- Заголовки статистики -->
+              <ul class="stats__list">
+                <li class="stats__list-item">Vote / Votes</li>
+                <li class="stats__list-item">Popularity</li>
+                <li class="stats__list-item">Original Title</li>
+                <li class="stats__list-item">Genre</li>
+              </ul>
+              <!-- Данные статистики (приходят с сервера) -->
+              <div class="stats__info">
+                  <!-- vote_average &  vote_count -->
+                  <p> <span class="vote orange">{{vote_average}}</span>   /   <span class="vote grey">{{vote_count}}</span></p>     
+                  <!-- popularity -->
+                  <p>{{popularity}}</p>
+                  <!-- original_title -->
+                  <p class="stats__info-title">{{original_title}}</p>
+                  <!-- genre_ids -->
+                  <p class="stats__info-genres">{{genre_ids}}</p>
+              </div>
+          </div>
+        <!-- About -->
+        <h4 class="details__about">About</h4>
+        <!--# overview -->
+        <p class="details__overview">{{overview}}</p>
+        <button class="details__button" id="watched">Add to watched</button>
+        <button class="details__button" id="queue">Add to queue</button>
+      </div>
+
+    </section>
