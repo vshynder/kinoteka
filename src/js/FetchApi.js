@@ -7,7 +7,20 @@ export default class FetchAPI {
   async getPopular(page = 1) {
     const popularAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=${page}`;
     const data = await fetch(popularAPI).then((j) => j.json());
-    return data.results;
+    const newData = data.results.map((el) => {
+      return {
+        poster_path: `https://image.tmdb.org/t/p/w500/${el.poster_path}`,
+        title: el.title,
+        genre: "drama, comedie",
+        release_year: el.release_date.split("-")[0],
+        vote_average: el.vote_average,
+        overwiev: el.overwiev,
+        original_title: el.original_title,
+        popularity: el.popularity,
+        vote_count: el.vote_count,
+      };
+    });
+    return newData;
   }
 
   async getByName(name) {
