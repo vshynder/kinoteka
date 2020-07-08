@@ -8,11 +8,58 @@
   </head>
 
   <body>
-    <main>
-      <div class="container" id="postersViewer">
-        
-
+    <header class="header background-01">
+      <div class="container">
+        <div class="menu-container">
+          <a class="logo" href="#">
+            <img
+              src="./images/icons/film.svg"
+              alt=""
+              width="24px"
+              height="24px"
+              class="logo-icon"
+            />
+            <p class="logo-writing">Filmoteka</p>
+          </a>
+          <div>
+            <button class="home header-top-btn">home</button>
+            <button class="library header-top-btn">my library</button>
+          </div>
+        </div>
+        <div class="input-container">
+          <input
+            type="text"
+            name="film"
+            class="search-field"
+            placeholder="Поиск фильмов"
+          />
+          <button class="search-btn" href="#">
+            <img
+              src="./images/icons/search.svg"
+              alt=""
+              width="16px"
+              height="16px"
+              class="search-icon"
+            />
+          </button>
+        </div>
+        <div class="right-header-btn-container header-btn-container">
+          <button class="header-big-btn orange-header-big-btn" href="#">
+            watched
+          </button>
+          <button class="header-big-btn" href="#">queue</button>
+        </div>
+        <div class="left-header-btn-container header-btn-container">
+          <button class="header-big-btn" href="#">watched</button>
+          <button class="header-big-btn orange-header-big-btn" href="#">
+            queue
+          </button>
+        </div>
+        <div class="empty-container"></div>
       </div>
+    </header>
+    <main>
+      <div class="container" id="postersViewer"></div>
     </main>
   </body>
 </html>

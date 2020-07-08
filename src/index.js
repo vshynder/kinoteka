@@ -12,7 +12,7 @@ searchMovie.then((m) => console.log(m));
 
 const viewer = document.querySelector("#postersViewer");
 
-console.log(viewer);
+// console.log(viewer);
 
 const GENRES = [];
 const genrseFetch =
