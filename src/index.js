@@ -1,8 +1,8 @@
 import "./styles/styles.scss";
 import FetchApi from "./js/fetchApi.js";
-//подключает липовый объект
+//подключает липовый объект для details, потом нужно удалить
 import data from "./js/data";
-//подключает страничку одного фильма
+//подключает details, строит страничку одного фильма нужно вызвать при нажатии на фильм и передать внутрь объект
 import buildDetails from "./js/details";
 import PageSlider from "./js/PageSlider.js";
 
@@ -20,5 +20,5 @@ const genrseFetch =
 fetch(genrseFetch)
   .then((j) => j.json())
   .then((d) => console.log(d));
-//строит страничку одного фильма
-buildDetails(data);
+//строит страничку одного фильма нужно при нажатии на фильм
+// buildDetails(data);
