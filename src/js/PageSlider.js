@@ -123,6 +123,7 @@ export default class PageSlider {
     e.preventDefault();
     const imgUrl = e.target.closest("a").querySelector(".main__item-img").src;
     const film = this.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
+
     buildDetails(film);
   }
 }

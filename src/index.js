@@ -1,6 +1,5 @@
 import "./styles/styles.scss";
 import FetchApi from "./js/fetchApi.js";
-//подключает details, строит страничку одного фильма нужно вызвать при нажатии на фильм и передать внутрь объект
 import PageSlider from "./js/PageSlider.js";
 
 const mainPageSlider = new PageSlider();
@@ -17,5 +16,3 @@ const genrseFetch =
 fetch(genrseFetch)
   .then((j) => j.json())
   .then((d) => console.log(d));
-//строит страничку одного фильма нужно при нажатии на фильм
-// buildDetails(data);
