@@ -56,29 +56,21 @@
     }
   }
   
-//для проверки стилей кнопки на чистом css, НЕ ПУСКАТЬ В ПРОДАКШЕН!
-.details__button:focus{
-  @extend %orange;
-    border: 1px solid $poster-about-color;
-}
 
   /* Статистика фильма */
   //контейнер
   .stats{
     display: flex;
     justify-content: space-between;
-    width: 240px;
     margin-bottom: 35px;
     // Список названий параметров (серые заголовки слева)
   &__list{
-    list-style: none;
+    @extend %list;
     color: $poster-title-color;
     opacity: 0.6;
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
-    margin: 0;
-    padding: 0;
   }
   //Убрать отступ у последнего заголовка параметров
   &__list-item:not(:last-child) {
@@ -122,6 +114,8 @@
   //Стили, когда кнопка нажата
   .active{
     @extend %orange;
+    color: #ffffff;
+    background-color: $poster-about-color;
     border: 1px solid $poster-about-color;
   }
 
@@ -131,7 +125,7 @@
   @media (min-width: 768px) {
     .details{
       display: flex;
-      padding: 55px 20px;
+      padding: 55px 20px 0;
       &__main{
         width: 295px;
       }
