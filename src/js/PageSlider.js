@@ -1,6 +1,7 @@
 import pageViewerTemplate from "../templates/postersViewerTemplate.hbs";
 import pageSliderTemplate from "../templates/pageSliderTemplate.hbs";
 import fetchAPI from "./FetchApi.js";
+import buildDetails from "./details";
 
 export default class PageSlider {
   constructor(containerId = "pageSlider") {
@@ -107,6 +108,21 @@ export default class PageSlider {
   passPageNum(num) {
     this.fetchApi.getPopular(num).then((movies) => {
       this.refs.viewer.innerHTML = pageViewerTemplate(movies);
+      const main__list = document.querySelector(".main__list");
+      main__list.addEventListener(
+        "click",
+        this.handleGalleryClick.bind(movies)
+      );
     });
+  }
+
+  handleGalleryClick(e) {
+    if (e.target.tagName === "UL") {
+      return;
+    }
+    e.preventDefault();
+    const imgUrl = e.target.closest("a").querySelector(".main__item-img").src;
+    const film = this.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
+    buildDetails(film);
   }
 }

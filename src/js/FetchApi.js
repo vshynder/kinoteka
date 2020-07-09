@@ -14,7 +14,7 @@ export default class FetchAPI {
         genre: "drama, comedie",
         release_year: el.release_date.split("-")[0],
         vote_average: el.vote_average,
-        overwiev: el.overwiev,
+        overview: el.overview,
         original_title: el.original_title,
         popularity: el.popularity,
         vote_count: el.vote_count,
