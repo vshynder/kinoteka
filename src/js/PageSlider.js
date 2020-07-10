@@ -111,22 +111,30 @@ export default class PageSlider {
       const main__list = document.querySelector(".main__list");
       main__list.addEventListener(
         "click",
-        this.handleGalleryClick.bind(movies)
+        this.handleGalleryClick.bind(this, movies)
       );
     });
   }
 
-  handleGalleryClick(e) {
+  handleGalleryClick(movies, e) {
+    // console.log(this, e, movies);
     if (e.target.tagName === "UL") {
       return;
     }
     e.preventDefault();
     const imgUrl = e.target.closest("a").querySelector(".main__item-img").src;
-    const film = this.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
+    const film = movies.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
 
-    const slider = document.querySelector('#pageSlider');
-    slider.setAttribute('style', 'display:none');
+    // const slider = document.querySelector("#pageSlider");
+    // slider.setAttribute("style", "display:none");
 
-    buildDetails(film);
+    this.hide();
+    const main__list = document.querySelector(".main__list");
+    main__list.removeEventListener("click", this.handleGalleryClick);
+
+    const prevPage = this.refs.viewer.innerHTML;
+
+    // this.hide();
+    buildDetails(film, prevPage);
   }
 }

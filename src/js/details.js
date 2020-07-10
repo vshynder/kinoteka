@@ -1,13 +1,12 @@
 import detailsTemplate from "../templates/details.hbs";
-import PageSlider from './PageSlider';
+import PageSlider from "./PageSlider";
 const viewer = document.querySelector("#postersViewer");
 
-export default function buildDetails(data) {
-  //Если передается массив объектов
-  // const markup = data.map(film => detailsTemplate(film)).join('')
+const mainPageSlider = new PageSlider();
+
+export default function buildDetails(data, previousPage) {
   //если передаётся ОДИН ОБЪЕКТ
   const markup = detailsTemplate(data);
-
   viewer.innerHTML = markup;
 
   const refs = {
@@ -18,7 +17,7 @@ export default function buildDetails(data) {
     //Кнопка добавляет в очередь
     queueBtn: viewer.querySelector("#queue"),
     //Кнопка вернуться
-    returnBtn: viewer.querySelector('#return')
+    returnBtn: viewer.querySelector("#return"),
   };
 
   // Пока не придумал, где снять этот слушатель
@@ -32,9 +31,14 @@ export default function buildDetails(data) {
     }
 
     //Определяет нажатие кнопки return
-    if (e.target === refs.returnBtn){
-    // место для функции, отрисовывающей страничку home
-    console.log('return was pressed')
+    if (e.target === refs.returnBtn) {
+      // место для функции, отрисовывающей страничку home
+      viewer.innerHTML = previousPage;
+      // const slider = document.querySelector("#pageSlider");
+      // slider.removeAttribute("style", "display:none");
+
+      mainPageSlider.set(20);
+      window.scrollTo(top);
     }
     //Кнопка включается при нажатии
     if (!e.target.isActive) {
@@ -55,13 +59,13 @@ export default function buildDetails(data) {
       e.target.classList.add("active");
       //Определяет включение кнопки Watched ,здесь добавить в local storage просмотренное
       if (e.target === refs.watchedBtn) {
-        e.target.textContent = 'Remove from watched';
+        e.target.textContent = "Remove from watched";
         console.log("Watched is enable (проверка)"); //удалить
         return;
       }
       //Определяет включение кнопки Queue,здесь добавить в local storage очередь
       if (e.target === refs.queueBtn) {
-        e.target.textContent = 'Remove from queue';
+        e.target.textContent = "Remove from queue";
         console.log("Queue is enable(проверка)"); //удалить
         return;
       }
@@ -77,13 +81,13 @@ export default function buildDetails(data) {
 
       //Определяет выключение кнопки Watched, здесь удалить из local storage просмотренное
       if (e.target === refs.watchedBtn) {
-        e.target.textContent = 'Add to watched';
+        e.target.textContent = "Add to watched";
         console.log("Watched is disable(проверка)"); //удалить
         return;
       }
       //Определяет выключение кнопки Queue,  здесь удалить из local storage очередь
       if (e.target === refs.queueBtn) {
-        e.target.textContent = 'Add to queue';
+        e.target.textContent = "Add to queue";
         console.log("Queue is disable(проверка)"); //удалить
         return;
       }
@@ -91,3 +95,5 @@ export default function buildDetails(data) {
     }
   }
 }
+
+export { mainPageSlider };

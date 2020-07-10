@@ -1,8 +1,6 @@
 import "./styles/styles.scss";
 import FetchApi from "./js/fetchApi.js";
-import PageSlider from "./js/PageSlider.js";
-
-const mainPageSlider = new PageSlider();
+import { mainPageSlider } from "./js/details.js";
 
 mainPageSlider.set(20);
 
