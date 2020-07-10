@@ -1,4 +1,5 @@
 import detailsTemplate from "../templates/details.hbs";
+import PageSlider from './PageSlider';
 const viewer = document.querySelector("#postersViewer");
 
 export default function buildDetails(data) {
@@ -16,6 +17,8 @@ export default function buildDetails(data) {
     watchedBtn: viewer.querySelector("#watched"),
     //Кнопка добавляет в очередь
     queueBtn: viewer.querySelector("#queue"),
+    //Кнопка вернуться
+    returnBtn: viewer.querySelector('#return')
   };
 
   // Пока не придумал, где снять этот слушатель
@@ -28,6 +31,11 @@ export default function buildDetails(data) {
       return;
     }
 
+    //Определяет нажатие кнопки return
+    if (e.target === refs.returnBtn){
+    // место для функции, отрисовывающей страничку home
+    console.log('return was pressed')
+    }
     //Кнопка включается при нажатии
     if (!e.target.isActive) {
       enableBtn(e);
@@ -45,14 +53,15 @@ export default function buildDetails(data) {
       e.target.isActive = true;
       //добавляет стили
       e.target.classList.add("active");
-
       //Определяет включение кнопки Watched ,здесь добавить в local storage просмотренное
       if (e.target === refs.watchedBtn) {
+        e.target.textContent = 'Remove from watched';
         console.log("Watched is enable (проверка)"); //удалить
         return;
       }
       //Определяет включение кнопки Queue,здесь добавить в local storage очередь
       if (e.target === refs.queueBtn) {
+        e.target.textContent = 'Remove from queue';
         console.log("Queue is enable(проверка)"); //удалить
         return;
       }
@@ -68,11 +77,13 @@ export default function buildDetails(data) {
 
       //Определяет выключение кнопки Watched, здесь удалить из local storage просмотренное
       if (e.target === refs.watchedBtn) {
+        e.target.textContent = 'Add to watched';
         console.log("Watched is disable(проверка)"); //удалить
         return;
       }
       //Определяет выключение кнопки Queue,  здесь удалить из local storage очередь
       if (e.target === refs.queueBtn) {
+        e.target.textContent = 'Add to queue';
         console.log("Queue is disable(проверка)"); //удалить
         return;
       }

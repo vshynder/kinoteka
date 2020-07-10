@@ -3,8 +3,9 @@
   .details {
     font-family: $main-text-font;
     color: $poster-title-color;
-    padding: 20px;
+    padding: 80px 20px 20px 20px;
     margin: 0 auto;
+    position: relative;
     &__box{
       margin-bottom: 35px;
     }
@@ -43,57 +44,54 @@
       }
       //Кнопки просмотренное и очередь
       &__button {
-        @extend %button;        
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 16px;
-        text-transform: uppercase;
+        @extend %detailsBtn;
         padding: 20px 15px 15px;
         background: #ffffff;
-        border-radius: 5px;
         border: 1px solid $poster-title-color;
-        outline: none;
     }
   }
-  
-
+  //Позиционирует кнопку вернуться 
+  .return-btn{
+    @extend %detailsBtn;
+    color: #ffffff;
+    background-color: $poster-about-color;
+    border: 1px solid $poster-about-color;
+    position: absolute;
+    top: 15px;
+    padding: 10px 10px;
+    @media (min-width: 768px){
+      top: 35px;
+    }
+  }
   /* Статистика фильма */
-  //контейнер
+  //Таблица
   .stats{
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
     margin-bottom: 35px;
-    // Список названий параметров (серые заголовки слева)
-  &__list{
-    @extend %list;
-    color: $poster-title-color;
-    opacity: 0.6;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
-  }
-  //Убрать отступ у последнего заголовка параметров
-  &__list-item:not(:last-child) {
-    margin-bottom: 15px;
-  }
-  //Блок с параментрами фильма, которые пприходят с сервера
-  &__info{
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
-    color: $poster-title-color;
-  }
-  //сброс дефолтных стилей 
-  &__info p:not(:last-child) {
-    margin: 0 0 15px 0;
-    padding: 0;
-  }
-  //Оригинальное название фильма (приходит с сервера, должно быть большими буквами)
-  &__info-title{
-    text-transform: uppercase;
+   // Заголовки названий параметров (серые слева)
+    &__title{
+      color: $poster-title-color;
+      opacity: 0.6;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+      width: 60%;
+      height: 20px;
+      // margin-bottom: 20px;
+    }
+    //Блок с параментрами фильма, которые пприходят с сервера
+    &__info{
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+      color: $poster-title-color;
+      //Оригинальное название фильма (приходит с сервера, должно быть большими буквами)
+      &-title{
+        text-transform: uppercase;
+      }
+    }
   }
 
-}
   //Стили для оценки фильма и кол-ва проголосовавших, могут быть использованы и на страничке my library
   .vote{
     font-size: 12px;
@@ -119,15 +117,15 @@
     border: 1px solid $poster-about-color;
   }
 
-
   // MEDIARULES
 
   @media (min-width: 768px) {
     .details{
       display: flex;
-      padding: 55px 20px 0;
+      padding: 100px 20px 0;
       &__main{
-        width: 295px;
+        // width: 295px;
+        width: 80%;
       }
       &__box{ //image
         margin-right: 30px;
@@ -143,6 +141,7 @@
     .details{
       &__main{
         width: 420px;
+        // width: 60%;
       }
     }
   }
