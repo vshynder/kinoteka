@@ -124,6 +124,9 @@ export default class PageSlider {
     const imgUrl = e.target.closest("a").querySelector(".main__item-img").src;
     const film = this.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
 
+    const slider = document.querySelector('#pageSlider');
+    slider.setAttribute('style', 'display:none');
+
     buildDetails(film);
   }
 }
