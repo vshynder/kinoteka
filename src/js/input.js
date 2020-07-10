@@ -6,7 +6,6 @@ function eventMaking () {
 
     const inputLine = document.querySelector('.js-search-field');
     inputLine.addEventListener('input', searchFormInputHandler);
-
 }
 
 function searchFormInputHandler (e) { 
@@ -16,5 +15,5 @@ function searchFormInputHandler (e) {
     const input = search.getByName(value);
     input.then(d=>console.log(d));
 };
-eventMaking();
+eventMaking(); 
 
