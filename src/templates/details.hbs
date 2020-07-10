@@ -1,5 +1,5 @@
     <section class="details" id="details">
-      
+      <button  class="return-btn " id="return"> Return</button>
       <div class="details__box">
         <img class="details__image" src={{poster_path}} alt={{title}} >
       </div>
@@ -7,27 +7,28 @@
       <div class="details__main">
           <!-- title -->
           <h2 class="details__title">{{title}}</h2>
-          <!-- Статистика -->
-          <div class="stats">
-            <!-- Заголовки статистики -->
-              <ul class="stats__list">
-                <li class="stats__list-item">Vote / Votes</li>
-                <li class="stats__list-item">Popularity</li>
-                <li class="stats__list-item">Original Title</li>
-                <li class="stats__list-item">Genre</li>
-              </ul>
-              <!-- Данные статистики (приходят с сервера) -->
-              <div class="stats__info">
-                  <!-- vote_average &  vote_count -->
-                  <p> <span class="vote orange">{{vote_average}}</span>   /   <span class="vote grey">{{vote_count}}</span></p>     
-                  <!-- popularity -->
-                  <p>{{popularity}}</p>
-                  <!-- original_title -->
-                  <p class="stats__info-title">{{original_title}}</p>
-                  <!-- genre_ids -->
-                  <p class="stats__info-genres">{{genre}}</p>
-              </div>
-          </div>
+          <!-- Статистика фильма-->
+              <table class="stats">
+                <tr>
+                    <!-- заголовок статистики -->
+                    <td class="stats__title">Vote / Votes</td>
+                    <!-- инфа статистики , приходит с сервера-->
+                    <td class="stats__info"> <span class="vote orange">{{vote_average}}</span>   /   <span class="vote grey">{{vote_count}}</span></td>     
+                </tr>
+                
+                <tr>
+                    <td class="stats__title">Popularity</td>
+                    <td class="stats__info">{{popularity}}</p>
+                </tr>                                
+                <tr>
+                    <td class="stats__title">Original Title</td>
+                    <td class="stats__info stats__info-title">{{original_title}}</td>
+                </tr>                
+                <tr>
+                    <td class="stats__title">Genre</td>
+                    <td class="stats__info stats__info-genres">{{genre}}</td>
+                </tr>
+              </table>
         <!-- About -->
         <h4 class="details__about">About</h4>
         <!--# overview -->
