@@ -1,7 +1,7 @@
 {
   "name": "kinoteka",
   "version": "1.1.0",
-  "description": "",
+  "description": "Kinoteka",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env.mode development --config ./webpack/config.js",
