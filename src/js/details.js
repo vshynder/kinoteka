@@ -20,7 +20,7 @@ export default function buildDetails(data, previousPage) {
     returnBtn: viewer.querySelector("#return"),
   };
 
-  // Пока не придумал, где снять этот слушатель
+  // Пока не придумал, где снять этот слушатель`
   refs.details.addEventListener("click", handleBtn);
 
   //Работа с кнопками + local storage
