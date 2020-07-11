@@ -1,5 +1,6 @@
 import detailsTemplate from "../templates/details.hbs";
 import PageSlider from "./PageSlider";
+import {openMyLib, addToMyLib, isFilmInLS, deleteFilm } from '../js/storage';//Дима Иванов
 const viewer = document.querySelector("#postersViewer");
 
 const mainPageSlider = new PageSlider();
@@ -19,9 +20,24 @@ export default function buildDetails(data, previousPage) {
     //Кнопка вернуться
     returnBtn: viewer.querySelector("#return"),
   };
+//Функционал проверки содержимого LS при загрузке страницы details - Дима Иванов
+  if (isFilmInLS('watched',data) !==false){
+    refs.watchedBtn.isActive=true;
+    refs.watchedBtn.classList.add("active");
+    refs.watchedBtn.textContent = "Remove from watched";
+    
+  };
+  if (isFilmInLS('queue',data) !==false){
+    refs.queueBtn.isActive=true;
+    refs.queueBtn.classList.add("active");
+    refs.queueBtn.textContent = "Remove from queue";
+    
+  };
 
   // Пока не придумал, где снять этот слушатель
   refs.details.addEventListener("click", handleBtn);
+
+
 
   //Работа с кнопками + local storage
   function handleBtn(e) {
@@ -42,7 +58,8 @@ export default function buildDetails(data, previousPage) {
     }
     //Кнопка включается при нажатии
     if (!e.target.isActive) {
-      enableBtn(e);
+     
+    enableBtn(e);
       return;
     }
     //Кнопка отключается при нажатии
@@ -59,12 +76,14 @@ export default function buildDetails(data, previousPage) {
       e.target.classList.add("active");
       //Определяет включение кнопки Watched ,здесь добавить в local storage просмотренное
       if (e.target === refs.watchedBtn) {
+        addToMyLib('watched',data); //Дима Иванов
         e.target.textContent = "Remove from watched";
         console.log("Watched is enable (проверка)"); //удалить
         return;
       }
       //Определяет включение кнопки Queue,здесь добавить в local storage очередь
       if (e.target === refs.queueBtn) {
+        addToMyLib('queue',data);//Дима Иванов
         e.target.textContent = "Remove from queue";
         console.log("Queue is enable(проверка)"); //удалить
         return;
@@ -81,12 +100,15 @@ export default function buildDetails(data, previousPage) {
 
       //Определяет выключение кнопки Watched, здесь удалить из local storage просмотренное
       if (e.target === refs.watchedBtn) {
+        deleteFilm('watched',data);
         e.target.textContent = "Add to watched";
+
         console.log("Watched is disable(проверка)"); //удалить
         return;
       }
       //Определяет выключение кнопки Queue,  здесь удалить из local storage очередь
       if (e.target === refs.queueBtn) {
+        deleteFilm('queue',data);
         e.target.textContent = "Add to queue";
         console.log("Queue is disable(проверка)"); //удалить
         return;
