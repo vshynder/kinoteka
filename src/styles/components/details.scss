@@ -6,6 +6,12 @@
     padding: 80px 20px 20px 20px;
     margin: 0 auto;
     position: relative;
+    &__control {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 70px;
+    }
     &__box{
       margin-bottom: 35px;
     }
@@ -45,6 +51,8 @@
       //Кнопки просмотренное и очередь
       &__button {
         @extend %detailsBtn;
+        width: 45%;
+        height: 100%;
         padding: 20px 15px 15px;
         background: #ffffff;
         border: 1px solid $poster-title-color;
