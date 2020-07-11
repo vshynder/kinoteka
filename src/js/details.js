@@ -5,7 +5,7 @@ const viewer = document.querySelector("#postersViewer");
 
 const mainPageSlider = new PageSlider();
 
-export default function buildDetails(data, previousPage) {
+export default function buildDetails(data, previousPage, currentPageNumber) {
   //если передаётся ОДИН ОБЪЕКТ
   const markup = detailsTemplate(data);
   viewer.innerHTML = markup;
@@ -34,7 +34,7 @@ export default function buildDetails(data, previousPage) {
     
   };
 
-  // Пока не придумал, где снять этот слушатель
+  // Пока не придумал, где снять этот слушатель`
   refs.details.addEventListener("click", handleBtn);
 
 
@@ -53,7 +53,7 @@ export default function buildDetails(data, previousPage) {
       // const slider = document.querySelector("#pageSlider");
       // slider.removeAttribute("style", "display:none");
 
-      mainPageSlider.set(20);
+      mainPageSlider.set(20, currentPageNumber);
       window.scrollTo(top);
     }
     //Кнопка включается при нажатии
