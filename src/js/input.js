@@ -29,8 +29,6 @@ function handleQueryBtn() {
   const data = getfilmsData("queue");
 
   viewer.innerHTML = pageViewerTemplate(data);
-  console.log(data);
-  renderEachImage(data);
 }
 function handleWatcheBtn() {
   queryTab.classList.add("d-n");
@@ -38,8 +36,6 @@ function handleWatcheBtn() {
   const data = getfilmsData("watched");
 
   viewer.innerHTML = pageViewerTemplate(data);
-  console.log(data);
-  renderEachImage(data);
 }
 
 homeButton.addEventListener("click", handleHomeButtonClick);
@@ -54,9 +50,9 @@ function handleHomeButtonClick() {
   header.classList.remove("background-03");
   inputContainer.classList.remove("d-n");
   myLibraryBtns.classList.add("d-n");
-  mainPageSlider.set(20);
   queryTab.classList.add("d-n");
   watchedTab.classList.add("d-n");
+  mainPageSlider.set(20);
 }
 
 libraryButton.addEventListener("click", handleLibraryClick);
@@ -75,26 +71,25 @@ function handleLibraryClick() {
 
   const moviesArr = getfilmsData("watched");
   viewer.innerHTML = pageViewerTemplate(moviesArr);
-  renderEachImage(moviesArr);
+  // renderEachImage(moviesArr);
 }
-function renderEachImage(movies) {
-  const eventUl = document.querySelector(".main__list");
-  eventUl.addEventListener("click", handleMovieClick.bind(movies));
-}
-function handleMovieClick(e) {
-  if (e.target.tagName === "UL") {
-    return;
-  }
-  e.preventDefault();
-  const imgUrl = e.target.closest("a").querySelector(".main__item-img").src;
-  const film = this.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
+// function renderEachImage(movies) {
+//   eventUl.addEventListener("click", handleMovieClick.bind(movies));
+// }
+// function handleMovieClick(e) {
+//   if (e.target.tagName === "UL") {
+//     return;
+//   }
+//   e.preventDefault();
+//   const imgUrl = e.target.closest("a").querySelector(".main__item-img").src;
+//   const film = this.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
 
-  const main__list = document.querySelector(".main__list");
-  main__list.removeEventListener("click", handleMovieClick);
-  const prevPage = viewer.innerHTML;
+//   const main__list = document.querySelector(".main__list");
+//   main__list.removeEventListener("click", handleMovieClick);
+//   const prevPage = viewer.innerHTML;
 
-  buildDetails(film, prevPage);
-}
+//   buildDetails(film, prevPage);
+// }
 
 function eventMaking() {
   const inputLine = document.querySelector(".js-search-field");
@@ -121,3 +116,17 @@ function inputChecking(input) {
   renderEachImage(input);
 }
 export { eventMaking };
+
+const logo = document.querySelector(".logo-writing");
+logo.addEventListener("click", () => {
+  mainPageSlider.set(20);
+  header.classList.add("background-01");
+  header.classList.remove("background-02");
+  header.classList.remove("background-03");
+  inputContainer.classList.remove("d-n");
+  myLibraryBtns.classList.add("d-n");
+  queryTab.classList.add("d-n");
+  watchedTab.classList.add("d-n");
+  libraryButton.classList.remove("header-top-orange-btn");
+  homeButton.classList.add("header-top-orange-btn");
+});
