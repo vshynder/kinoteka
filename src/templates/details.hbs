@@ -1,0 +1,42 @@
+    <section class="details" id="details">
+      <button  class="return-btn " id="return"> Return</button>
+      <div class="details__box">
+        <img class="details__image" src={{poster_path}} alt={{title}} >
+      </div>
+      <!-- Блок информации о фильме -->
+      <div class="details__main">
+          <!-- title -->
+          <h2 class="details__title">{{title}}</h2>
+          <!-- Статистика фильма-->
+              <table class="stats">
+                <tr>
+                    <!-- заголовок статистики -->
+                    <td class="stats__title">Vote / Votes</td>
+                    <!-- инфа статистики , приходит с сервера-->
+                    <td class="stats__info"> <span class="vote orange">{{vote_average}}</span>   /   <span class="vote grey">{{vote_count}}</span></td>     
+                </tr>
+                
+                <tr>
+                    <td class="stats__title">Popularity</td>
+                    <td class="stats__info">{{popularity}}</p>
+                </tr>                                
+                <tr>
+                    <td class="stats__title">Original Title</td>
+                    <td class="stats__info stats__info-title">{{original_title}}</td>
+                </tr>                
+                <tr>
+                    <td class="stats__title">Genre</td>
+                    <td class="stats__info stats__info-genres">{{genre}}</td>
+                </tr>
+              </table>
+        <!-- About -->
+        <h4 class="details__about">About</h4>
+        <!--# overview -->
+        <p class="details__overview">{{overview}}</p>
+        <div class="details__control">
+        <button class="details__button" id="watched">Add to watched</button>
+        <button class="details__button" id="queue">Add to queue</button>
+        </div>
+      </div>
+
+    </section>

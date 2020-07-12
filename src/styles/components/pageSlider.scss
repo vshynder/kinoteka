@@ -1,0 +1,90 @@
+.slider__list {
+  @extend %list;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+
+  font-family: $main-text-font;
+  font-size: 0.857em;
+  line-height: 1.2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+
+
+
+  @media (min-width: 768px) {
+    width: 57.42%;
+    margin-bottom: 55px;
+  }
+  @media (min-width: 1024px) {
+    width: 40.87%;
+  }
+}
+
+.slider {
+  &__item {
+    height: 100%;
+    min-width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__page {
+    &-current {
+      background-color: $poster-about-color;
+      color: #fff;
+      width: 40px;
+      border-radius: 5px;
+    }
+
+    &-first,
+    &-secondBefore,
+    &-firstBefore,
+    &-firstAfter,
+    &-secondAfter,
+    &-last {
+      cursor: pointer;
+      &:hover {
+        color: $poster-about-color;
+      }
+    }
+  }
+
+  &__mobile--hidden {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__btn {
+    @extend %button;
+    border-color: none;
+    width: 40px;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:focus {
+      outline: 0;
+    }
+  }
+  &__btn[data-move='left'] {
+    background-image: url('../images/icons/arrow-left.svg');
+    &:hover {
+      background-image: url('../images/icons/arrow-left-hover.svg');
+    }
+  }
+  &__btn[data-move='right'] {
+    background-image: url('../images/icons/arrow-right.svg');
+    &:hover {
+      background-image: url('../images/icons/arrow-right-hover.svg');
+    }
+  }
+}

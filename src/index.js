@@ -1,6 +1,12 @@
-import './styles/styles.scss';
+import "./styles/styles.scss";
+import {
+  mainPageSlider
+} from "./js/details.js";
+import {
+  eventMaking
+} from "./js/input.js";
 import './modalwindow.js'
 
-const viewer = document.querySelector('#postersViewer');
-
-console.log(viewer);
+eventMaking();
+mainPageSlider.set(20);
+export const header = document.querySelector(".header");
