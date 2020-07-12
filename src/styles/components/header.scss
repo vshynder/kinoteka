@@ -31,9 +31,8 @@ h3 {
 p {
     margin: 0;
 }
-.d-n {
-    display: none;
-}
+
+
 .header {
     padding-top: 48px ;
     
@@ -101,13 +100,20 @@ p {
 .header-top-btn:hover {
     border-bottom: 2px solid rgb(255,105,0);
 }
+.header-top-orange-btn {
+    border-bottom: 2px solid rgb(255,105,0);
+}
+.big-input-container {
+    margin-bottom: 59px;
+
+}
 .input-container {
     display: flex;
     justify-content: space-between;
     position: relative;
     margin: 0 auto;
-    margin-bottom: 99px;
     padding-top: 38px;
+    padding-bottom: 22px;
 
 }
 .search-field {
@@ -121,6 +127,7 @@ p {
     border-bottom: 1px solid rgb(129, 129, 129);
     margin: 0;
     padding: 0;
+
 }
 .search-field::placeholder {
     color: rgb(207,207,206);
@@ -134,7 +141,15 @@ p {
     padding: 0;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 24px;
+}
+.error-notification {
+    display: block;
+    height: 18px;
+    font-size: 12px;
+    width: 100%;
+    color: rgb(255,0,19);
+    text-align: center;
 }
 .header-btn-container {
     display: flex;
@@ -144,12 +159,12 @@ p {
     padding-top: 46px;
     
 }
-.right-header-btn-container {
-    display: none;
-}
-.left-header-btn-container {
-    display: none;
-}
+// .right-header-btn-container {
+//     display: none;
+// }
+// .left-header-btn-container {
+//     display: none;
+// }
 .header-big-btn {
      width: 130px;
      height: 44px;
@@ -171,6 +186,8 @@ p {
 }
 .empty-container {
     height: 155px;
+}
+.d-n {
     display: none;
 }
 @media (min-width: 768px) {
