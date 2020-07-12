@@ -14,6 +14,37 @@ const homeButton = document.querySelector(".js-home-btn");
 const libraryButton = document.querySelector(".js-library-btn");
 const myLibraryBtns = document.querySelector(".header-btn-container");
 const inputContainer = document.querySelector(".big-input-container");
+const watchedTab = document.querySelector('.js-right-header-btn-container');
+const queryTab = document.querySelector('.js-left-header-btn-container');
+
+const queryBtnOnWatchedTab = document.querySelector('.js-right-header-btn');
+const watchedBtnOnQueryTab = document.querySelector('.js-left-header-btn');
+
+
+
+
+queryBtnOnWatchedTab.addEventListener('click', handleQueryBtn)
+watchedBtnOnQueryTab.addEventListener('click', handleWatcheBtn)
+
+function handleQueryBtn () {
+  queryTab.classList.remove('d-n');
+  watchedTab.classList.add('d-n');
+  const data = getfilmsData("queue");
+
+  viewer.innerHTML = pageViewerTemplate(data);
+  console.log(data);
+  renderEachImage(data);
+}
+function handleWatcheBtn () {
+  queryTab.classList.add('d-n');
+  watchedTab.classList.remove('d-n');
+  const data = getfilmsData("watched");
+
+  viewer.innerHTML = pageViewerTemplate(data);
+  console.log(data);
+  renderEachImage(data);
+
+}
 
 homeButton.addEventListener("click", handleHomeButtonClick);
 function handleHomeButtonClick() {
@@ -28,6 +59,8 @@ function handleHomeButtonClick() {
   inputContainer.classList.remove("d-n");
   myLibraryBtns.classList.add("d-n");
   mainPageSlider.set(20);
+  queryTab.classList.add('d-n');
+  watchedTab.classList.add('d-n');
 }
 
 libraryButton.addEventListener("click", handleLibraryClick);
@@ -43,6 +76,7 @@ function handleLibraryClick() {
   header.classList.remove("background-03");
   inputContainer.classList.add("d-n");
   myLibraryBtns.classList.remove("d-n");
+
   const moviesArr = getfilmsData("watched");
   viewer.innerHTML = pageViewerTemplate(moviesArr);
   renderEachImage(moviesArr);
@@ -67,9 +101,8 @@ function eventMaking() {
 
   const debounced = _.debounce(searchFormInputHandler, 500);
   inputLine.addEventListener("input", debounced);
-  // );
-}
 
+}
 function searchFormInputHandler(e) {
   const value = e.target.value;
   if (value) {
@@ -88,7 +121,8 @@ function inputChecking(input) {
   viewer.innerHTML = pageViewerTemplate(input);
   renderEachImage(input);
 }
-export { eventMaking };
+
+export {eventMaking};
 
 function renderEachImage(movies) {
   const eventUl = document.querySelector(".main__list");
