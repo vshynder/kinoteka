@@ -47,6 +47,10 @@ function handleLibraryClick() {
   viewer.innerHTML = pageViewerTemplate(moviesArr);
   renderEachImage(moviesArr);
 }
+function renderEachImage(movies) {
+  const eventUl = document.querySelector(".main__list");
+  eventUl.addEventListener("click", handleMovieClick.bind(movies));
+}
 function handleMovieClick(e) {
   if (e.target.tagName === "UL") {
     return;
@@ -89,8 +93,3 @@ function inputChecking(input) {
   renderEachImage(input);
 }
 export { eventMaking };
-
-function renderEachImage(movies) {
-  const eventUl = document.querySelector(".main__list");
-  eventUl.addEventListener("click", handleMovieClick.bind(movies));
-}
