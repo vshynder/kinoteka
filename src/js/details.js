@@ -1,13 +1,17 @@
 import detailsTemplate from "../templates/details.hbs";
 import PageSlider from "./PageSlider";
-import {openMyLib, addToMyLib, isFilmInLS, deleteFilm } from '../js/storage';//Дима Иванов
+import { openMyLib, addToMyLib, isFilmInLS, deleteFilm } from "../js/storage"; //Дима Иванов
 const viewer = document.querySelector("#postersViewer");
+import { header } from "../index.js";
 
 const mainPageSlider = new PageSlider();
 
 export default function buildDetails(data, previousPage, currentPageNumber) {
   //если передаётся ОДИН ОБЪЕКТ
   const markup = detailsTemplate(data);
+  header.classList.remove("background-01");
+  header.classList.remove("background-02");
+  header.classList.add("background-03");
   viewer.innerHTML = markup;
 
   const refs = {
@@ -20,24 +24,20 @@ export default function buildDetails(data, previousPage, currentPageNumber) {
     //Кнопка вернуться
     returnBtn: viewer.querySelector("#return"),
   };
-//Функционал проверки содержимого LS при загрузке страницы details - Дима Иванов
-  if (isFilmInLS('watched',data) !==false){
-    refs.watchedBtn.isActive=true;
+  //Функционал проверки содержимого LS при загрузке страницы details - Дима Иванов
+  if (isFilmInLS("watched", data) !== false) {
+    refs.watchedBtn.isActive = true;
     refs.watchedBtn.classList.add("active");
     refs.watchedBtn.textContent = "Remove from watched";
-    
-  };
-  if (isFilmInLS('queue',data) !==false){
-    refs.queueBtn.isActive=true;
+  }
+  if (isFilmInLS("queue", data) !== false) {
+    refs.queueBtn.isActive = true;
     refs.queueBtn.classList.add("active");
     refs.queueBtn.textContent = "Remove from queue";
-    
-  };
+  }
 
   // Пока не придумал, где снять этот слушатель`
   refs.details.addEventListener("click", handleBtn);
-
-
 
   //Работа с кнопками + local storage
   function handleBtn(e) {
@@ -53,13 +53,18 @@ export default function buildDetails(data, previousPage, currentPageNumber) {
       // const slider = document.querySelector("#pageSlider");
       // slider.removeAttribute("style", "display:none");
 
-      mainPageSlider.set(20, currentPageNumber);
-      window.scrollTo(top);
+      header.classList.add("background-01");
+      header.classList.remove("background-02");
+      header.classList.remove("background-03");
+      if (currentPageNumber) {
+        mainPageSlider.set(20, currentPageNumber);
+        window.scrollTo(top);
+      }
+      refs.details.removeEventListener("click", handleBtn);
     }
     //Кнопка включается при нажатии
     if (!e.target.isActive) {
-     
-    enableBtn(e);
+      enableBtn(e);
       return;
     }
     //Кнопка отключается при нажатии
@@ -76,16 +81,14 @@ export default function buildDetails(data, previousPage, currentPageNumber) {
       e.target.classList.add("active");
       //Определяет включение кнопки Watched ,здесь добавить в local storage просмотренное
       if (e.target === refs.watchedBtn) {
-        addToMyLib('watched',data); //Дима Иванов
+        addToMyLib("watched", data); //Дима Иванов
         e.target.textContent = "Remove from watched";
-        console.log("Watched is enable (проверка)"); //удалить
         return;
       }
       //Определяет включение кнопки Queue,здесь добавить в local storage очередь
       if (e.target === refs.queueBtn) {
-        addToMyLib('queue',data);//Дима Иванов
+        addToMyLib("queue", data); //Дима Иванов
         e.target.textContent = "Remove from queue";
-        console.log("Queue is enable(проверка)"); //удалить
         return;
       }
 
@@ -100,17 +103,15 @@ export default function buildDetails(data, previousPage, currentPageNumber) {
 
       //Определяет выключение кнопки Watched, здесь удалить из local storage просмотренное
       if (e.target === refs.watchedBtn) {
-        deleteFilm('watched',data);
+        deleteFilm("watched", data);
         e.target.textContent = "Add to watched";
 
-        console.log("Watched is disable(проверка)"); //удалить
         return;
       }
       //Определяет выключение кнопки Queue,  здесь удалить из local storage очередь
       if (e.target === refs.queueBtn) {
-        deleteFilm('queue',data);
+        deleteFilm("queue", data);
         e.target.textContent = "Add to queue";
-        console.log("Queue is disable(проверка)"); //удалить
         return;
       }
       return;
