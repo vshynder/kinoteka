@@ -70,22 +70,28 @@ console.log('нет');
   
 }
 
-// содержимое MyLib передаем ключ - строка просмотренный('watched') или к просмотру('to watch')
+// содержимое MyLib  - передаем ключ - строка просмотренный('watched') или к просмотру('queue')
 function openMyLib(key) {
-// получаем данные из хранилища
-let filmsData = getfilmsData(key);
+  // получаем данные из хранилища
+  let filmsData = getfilmsData(key);
+    
+  // формируем данные для вывода
+  if (filmsData !== null) {
+  // console.log(key);
+  // console.log(filmsData);
   
-// формируем данные для вывода
-if (filmsData !== null) {
-console.log(key);
-console.log(filmsData);
-  return filmsData;
+  const array_size = 20;
   
-} else {
-  // если в myLib пусто
-  // cart.innerHTML = 'empty';
-}
-}
+  let sliced_filmsData = [];
+  
+  for (let i = 0; i < filmsData.length; i += array_size) {
+    sliced_filmsData.push(filmsData.slice(i, i + array_size));
+  }
+  // console.log(sliced_filmsData);
+    return sliced_filmsData;
+    
+  } 
+  }
 
 
 // // очищаем Mylib
