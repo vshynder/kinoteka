@@ -65,7 +65,7 @@ function handleMovieClick(e) {
 function eventMaking() {
   const inputLine = document.querySelector(".js-search-field");
 
-  const debounced = _.debounce(searchFormInputHandler, 500);
+  const debounced = _.debounce(searchFormInputHandler, 1500);
   inputLine.addEventListener("input", debounced);
   // );
 }
