@@ -24,6 +24,7 @@ footer {
 
 .footer__text--team {
   color: #000000;
+  display: inline-block;
 }
 
 .modal {
@@ -90,6 +91,7 @@ footer {
 .hidden {
   display: none;
 }
+
 .modal__title {
   text-transform: uppercase;
   font-style: italic;
@@ -97,11 +99,13 @@ footer {
   color: #262529;
   text-decoration: initial;
 }
+
 .member__list {
   list-style: none;
   margin: auto;
   padding-left: 10px;
 }
+
 .member__contact {
   margin: auto;
   list-style: none;
@@ -110,10 +114,12 @@ footer {
   justify-content: center;
   padding-left: 0;
 }
+
 .member__social {
   display: flex;
   padding: 5px;
 }
+
 .member__name {
   margin: auto;
   padding: 0;
@@ -123,6 +129,7 @@ footer {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
 }
+
 .member__number {
   margin: auto;
   padding: 0;
@@ -130,6 +137,7 @@ footer {
   padding-top: 10px;
   font-style: oblique;
 }
+
 .member__item {
   padding: 10px 0 10px;
   width: 260px;
@@ -149,11 +157,13 @@ footer {
     height: 77px;
     width: 387px;
   }
+
   .member__container {
     width: 580px;
     display: flex;
     flex-wrap: wrap;
   }
+
   .modal__title {
     text-align: center;
     padding-left: 0;
@@ -169,23 +179,28 @@ footer {
     height: 77px;
     padding-bottom: 30px;
   }
+
   .modal {
     width: 900px;
 
     height: 790px;
   }
+
   .modal-guts {
     padding-right: 30px;
     padding-bottom: 0;
     padding-top: 0;
   }
+
   .member__container {
     width: 800px;
   }
+
   .member__list {
     width: 800px;
     padding-left: 10px;
   }
+
   .modal__title {
     font-size: 40px;
   }
