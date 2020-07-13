@@ -1,15 +1,16 @@
 // storage.js
 
 // Принимает ключ `key` по которому будет произведена выборка, получаем данные из localStorage
-const getfilmsData = (key) => {
+function getFilmsData(key) {
   try {
     const serializedState = localStorage.getItem(key);
-
-    return serializedState === null ? undefined : JSON.parse(serializedState);
+    const lsArray =
+      serializedState === null ? undefined : JSON.parse(serializedState);
+    return lsArray;
   } catch (err) {
     console.error("Ошибка получения данных из LS: ", err);
   }
-};
+}
 
 // Принимает ключ `key` и значение FilmObj(данные фильма) записываем данные в хранилище
 
@@ -27,7 +28,7 @@ const setfilmsData = (key, filmsObjArr) => {
 
 //функция проверки наличия фильма в LS
 function isFilmInLS(key, filmObj) {
-  let filmsData = getfilmsData(key) || [];
+  let filmsData = getFilmsData(key) || [];
   const film = filmsData.find(
     (elem) => elem.poster_path === filmObj.poster_path
   );
@@ -48,7 +49,7 @@ function isFilmInLS(key, filmObj) {
 // }
 function addToMyLib(key, filmObj) {
   // получаем данные из Milib или создаем новый объект, если данные отсутствуют
-  let filmsData = getfilmsData(key) || [];
+  let filmsData = getFilmsData(key) || [];
 
   // + фильм
   // console.log(filmObj.id);
@@ -63,7 +64,7 @@ function addToMyLib(key, filmObj) {
 // содержимое MyLib  - передаем ключ - строка просмотренный('watched') или к просмотру('queue')
 function openMyLib(key) {
   // получаем данные из хранилища
-  let filmsData = getfilmsData(key);
+  let filmsData = getFilmsData(key);
 
   // формируем данные для вывода
   if (filmsData !== null) {
@@ -93,7 +94,7 @@ function openMyLib(key) {
 function deleteFilm(key, filmObj) {
   const toDelIdx = isFilmInLS(key, filmObj);
   // получаем данные из Milib
-  let filmsData = getfilmsData(key);
+  let filmsData = getFilmsData(key);
   // console.log(filmsData);
 
   //удаляем из массива фильм
@@ -105,4 +106,4 @@ function deleteFilm(key, filmObj) {
   setfilmsData(key, filmsData);
 }
 
-export { getfilmsData, openMyLib, addToMyLib, isFilmInLS, deleteFilm };
+export { getFilmsData, openMyLib, addToMyLib, isFilmInLS, deleteFilm };

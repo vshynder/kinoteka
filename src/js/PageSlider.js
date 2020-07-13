@@ -1,6 +1,8 @@
 import pageViewerTemplate from "../templates/postersViewerTemplate.hbs";
 import pageSliderTemplate from "../templates/pageSliderTemplate.hbs";
 import fetchAPI from "./FetchApi.js";
+const viewer = document.querySelector("#postersViewer");
+
 import buildDetails from "./details";
 import { handleMovieClick } from "../index.js";
 

@@ -1,10 +1,11 @@
 import FetchAPI from "./FetchApi";
 import { mainPageSlider } from "./details.js";
 import pageViewerTemplate from "../templates/postersViewerTemplate.hbs";
-import { header } from "../index.js";
-import { getfilmsData } from "./storage.js";
+import { handleMovieClick, getMoviesArray, header } from "../index.js";
+import { getFilmsData } from "./storage.js";
 import buildDetails from "./details.js";
 const viewer = document.querySelector("#postersViewer");
+viewer.addEventListener("click", handleMovieClick);
 
 const _ = require("lodash");
 
@@ -26,14 +27,14 @@ watchedBtnOnQueryTab.addEventListener("click", handleWatcheBtn);
 function handleQueryBtn() {
   queryTab.classList.remove("d-n");
   watchedTab.classList.add("d-n");
-  const data = getfilmsData("queue");
+  const data = getFilmsData("queue");
 
   viewer.innerHTML = pageViewerTemplate(data);
 }
 function handleWatcheBtn() {
   queryTab.classList.add("d-n");
   watchedTab.classList.remove("d-n");
-  const data = getfilmsData("watched");
+  const data = getFilmsData("watched");
 
   viewer.innerHTML = pageViewerTemplate(data);
 }
@@ -60,6 +61,8 @@ function handleLibraryClick() {
   if (libraryButton.classList.contains("header-top-orange-btn")) {
     return;
   }
+  viewer.removeEventListener("click", handleMovieClick);
+
   homeButton.classList.remove("header-top-orange-btn");
   libraryButton.classList.add("header-top-orange-btn");
   mainPageSlider.hide();
@@ -69,9 +72,12 @@ function handleLibraryClick() {
   inputContainer.classList.add("d-n");
   myLibraryBtns.classList.remove("d-n");
 
-  const moviesArr = getfilmsData("watched");
+  const moviesArr = getFilmsData("watched");
   viewer.innerHTML = pageViewerTemplate(moviesArr);
-  // renderEachImage(moviesArr);
+  viewer.addEventListener(
+    "click",
+    handleMovieClick.bind(null, false, "", "watched")
+  );
 }
 // function renderEachImage(movies) {
 //   eventUl.addEventListener("click", handleMovieClick.bind(movies));
@@ -97,11 +103,16 @@ function eventMaking() {
   const debounced = _.debounce(searchFormInputHandler, 1500);
   inputLine.addEventListener("input", debounced);
 }
-function searchFormInputHandler(e) {
+async function searchFormInputHandler(e) {
   const value = e.target.value;
   if (value) {
-    const input = search.getByName(value);
-    input.then((d) => inputChecking(d));
+    viewer.addEventListener(
+      "click",
+      handleMovieClick.bind(null, false, value, "")
+    );
+
+    const movies = await getMoviesArray(false, value);
+    inputChecking(movies);
     e.target.value = "";
   }
 }
@@ -113,7 +124,7 @@ function inputChecking(input) {
   }
   mainPageSlider.hide();
   viewer.innerHTML = pageViewerTemplate(input);
-  renderEachImage(input);
+  viewer.removeEventListener("click", handleMovieClick);
 }
 export { eventMaking };
 
