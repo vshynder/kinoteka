@@ -2,8 +2,9 @@ import "./styles/styles.scss";
 import { mainPageSlider } from "./js/details.js";
 import { eventMaking } from "./js/input.js";
 import fetchAPI from "./js/FetchApi.js";
-import getFilmsData from "./js/storage.js";
+import { getFilmsData } from "./js/storage.js";
 import buildDetails from "./js/details.js";
+import "./modalwindow.js";
 
 eventMaking();
 mainPageSlider.set(20);
@@ -36,8 +37,12 @@ export async function handleMovieClick(e, popular = true, name, ls) {
       movies = getMoviesArray(popular, name, ls);
       console.log(e, popular, name, ls, movies);
     }
+
     // console.log(movies);
     const film = movies.filter((moveiObj) => moveiObj.poster_path == imgUrl)[0];
+    if (!film) {
+      return;
+    }
     const prevPage = viewer.innerHTML;
     buildDetails(film, prevPage);
   }

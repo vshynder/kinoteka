@@ -20,6 +20,7 @@ const queryTab = document.querySelector(".js-left-header-btn-container");
 
 const queryBtnOnWatchedTab = document.querySelector(".js-right-header-btn");
 const watchedBtnOnQueryTab = document.querySelector(".js-left-header-btn");
+const logo = document.querySelector(".logo-writing");
 
 queryBtnOnWatchedTab.addEventListener("click", handleQueryBtn);
 watchedBtnOnQueryTab.addEventListener("click", handleWatcheBtn);
@@ -40,10 +41,12 @@ function handleWatcheBtn() {
 }
 
 homeButton.addEventListener("click", handleHomeButtonClick);
+logo.addEventListener("click", handleHomeButtonClick);
+
 function handleHomeButtonClick() {
-  if (homeButton.classList.contains("header-top-orange-btn")) {
-    return;
-  }
+  // if (homeButton.classList.contains("header-top-orange-btn")) {
+  //   return;
+  // }
   libraryButton.classList.remove("header-top-orange-btn");
   homeButton.classList.add("header-top-orange-btn");
   header.classList.add("background-01");
@@ -54,13 +57,14 @@ function handleHomeButtonClick() {
   queryTab.classList.add("d-n");
   watchedTab.classList.add("d-n");
   mainPageSlider.set(20);
+  viewer.addEventListener("click", handleMovieClick);
 }
 
 libraryButton.addEventListener("click", handleLibraryClick);
 function handleLibraryClick() {
-  if (libraryButton.classList.contains("header-top-orange-btn")) {
-    return;
-  }
+  // if (libraryButton.classList.contains("header-top-orange-btn")) {
+  //   return;
+  // }
   viewer.removeEventListener("click", handleMovieClick);
 
   homeButton.classList.remove("header-top-orange-btn");
@@ -127,17 +131,3 @@ function inputChecking(input) {
   viewer.removeEventListener("click", handleMovieClick);
 }
 export { eventMaking };
-
-const logo = document.querySelector(".logo-writing");
-logo.addEventListener("click", () => {
-  mainPageSlider.set(20);
-  header.classList.add("background-01");
-  header.classList.remove("background-02");
-  header.classList.remove("background-03");
-  inputContainer.classList.remove("d-n");
-  myLibraryBtns.classList.add("d-n");
-  queryTab.classList.add("d-n");
-  watchedTab.classList.add("d-n");
-  libraryButton.classList.remove("header-top-orange-btn");
-  homeButton.classList.add("header-top-orange-btn");
-});
