@@ -35,7 +35,7 @@ export async function handleMovieClick(e, popular = true, name, ls) {
       movies = await getMoviesArray(popular, name, ls);
     } else if (ls === "watched" || ls === "queue") {
       movies = getMoviesArray(popular, name, ls);
-      console.log(e, popular, name, ls, movies);
+      // console.log(e, popular, name, ls, movies);
     }
 
     // console.log(movies);
@@ -44,6 +44,9 @@ export async function handleMovieClick(e, popular = true, name, ls) {
       return;
     }
     const prevPage = viewer.innerHTML;
+    if (prevPage.includes("details")) {
+      return;
+    }
     buildDetails(film, prevPage);
   }
 }
@@ -58,7 +61,6 @@ export function getMoviesArray(popular = true, name = "", ls = "") {
   }
   if (ls !== "") {
     const moviiesArr = getFilmsData(ls);
-    console.log(moviiesArr);
 
     return moviiesArr;
   }

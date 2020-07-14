@@ -30,14 +30,29 @@ function handleQueryBtn() {
   watchedTab.classList.add("d-n");
   const data = getFilmsData("queue");
 
+  const moviesArr = getFilmsData("queue");
+  viewer.innerHTML = pageViewerTemplate(moviesArr);
+  viewer.addEventListener(
+    "click",
+    handleMovieClick.bind(null, false, "", "queue")
+  );
+
+  viewer.innerHTML = pageViewerTemplate(moviesArr);
+
   viewer.innerHTML = pageViewerTemplate(data);
 }
 function handleWatcheBtn() {
   queryTab.classList.add("d-n");
   watchedTab.classList.remove("d-n");
-  const data = getFilmsData("watched");
 
-  viewer.innerHTML = pageViewerTemplate(data);
+  const moviesArr = getFilmsData("watched");
+  viewer.innerHTML = pageViewerTemplate(moviesArr);
+  viewer.addEventListener(
+    "click",
+    handleMovieClick.bind(null, false, "", "watched")
+  );
+
+  viewer.innerHTML = pageViewerTemplate(moviesArr);
 }
 
 homeButton.addEventListener("click", handleHomeButtonClick);
@@ -75,13 +90,7 @@ function handleLibraryClick() {
   header.classList.remove("background-03");
   inputContainer.classList.add("d-n");
   myLibraryBtns.classList.remove("d-n");
-
-  const moviesArr = getFilmsData("watched");
-  viewer.innerHTML = pageViewerTemplate(moviesArr);
-  viewer.addEventListener(
-    "click",
-    handleMovieClick.bind(null, false, "", "watched")
-  );
+  handleWatcheBtn();
 }
 // function renderEachImage(movies) {
 //   eventUl.addEventListener("click", handleMovieClick.bind(movies));

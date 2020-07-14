@@ -52,6 +52,7 @@ export default function buildDetails(data, previousPage, currentPageNumber) {
       viewer.innerHTML = previousPage;
       // const slider = document.querySelector("#pageSlider");
       // slider.removeAttribute("style", "display:none");
+      // console.log(previousPage);
 
       header.classList.add("background-01");
       header.classList.remove("background-02");
@@ -60,7 +61,7 @@ export default function buildDetails(data, previousPage, currentPageNumber) {
         mainPageSlider.set(20, currentPageNumber);
         window.scrollTo(top);
       }
-      refs.details.removeEventListener("click", handleBtn);
+      // refs.details.removeEventListener("click", handleBtn);
     }
     //Кнопка включается при нажатии
     if (!e.target.isActive) {
