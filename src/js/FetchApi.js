@@ -41,7 +41,7 @@ export default class FetchAPI {
           genre: el.genre_ids.reduce((acc, id) => {
             const filmGenre = genres.filter((genre) => genre.id === id)[0];
             acc.push(filmGenre.name);
-            return acc;
+            return acc.slice(0, 3);
           }, []),
           release_year: el.release_date.split("-")[0],
           vote_average: el.vote_average,
